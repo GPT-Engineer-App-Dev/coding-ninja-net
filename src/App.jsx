@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Home, BookOpen, Info, Mail } from "lucide-react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import CodeEditor from "./pages/CodeEditor.jsx";
 import Layout from "./layouts/navbar"; // Use the navbar layout
 import Index from "./pages/Index.jsx";
 import Courses from "./pages/Courses.jsx";
@@ -44,6 +45,7 @@ const App = () => {
               <Route index element={<Index />} />
               <Route path="courses" element={<Courses />} />
               <Route path="courses/:id" element={<CourseDetail />} />
+              <Route path="code-editor" element={<CodeEditor />} />
               {/* Add more routes here as needed */}
             </Route>
           </Routes>
