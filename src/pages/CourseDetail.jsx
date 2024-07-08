@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const courseDetails = {
@@ -24,11 +26,19 @@ const courseDetails = {
 
 const CourseDetail = () => {
   const { id } = useParams();
+  const [isEnrolled, setIsEnrolled] = useState(false);
   const course = courseDetails[id];
 
   if (!course) {
     return <div>Course not found</div>;
   }
+
+  const handleEnroll = () => {
+    setIsEnrolled(true);
+    toast("You have successfully enrolled in the course!", {
+      description: `Course: ${course.title}`,
+    });
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -53,7 +63,9 @@ const CourseDetail = () => {
               <li key={index}>{review}</li>
             ))}
           </ul>
-          <Button className="mt-4">Enroll Now</Button>
+          <Button className="mt-4" onClick={handleEnroll} disabled={isEnrolled}>
+            {isEnrolled ? "Enrolled" : "Enroll Now"}
+          </Button>
         </CardContent>
       </Card>
     </div>
